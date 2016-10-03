@@ -1,9 +1,9 @@
 /* jshint esversion:6 */
 
 $(window).load(function() {
-
+        var mainDot = '2';
     // Left arrow is clicked
-    $(".left-arrow").on('click', function(event) {
+    $(".right-arrow").on('click', function(event) {
 
         var mainWidth = $(".curr-img-container").width();
         var mainHeight = $(".curr-img-container").height();
@@ -21,12 +21,14 @@ $(window).load(function() {
         })();
         var dataSlideValue = $(".carousel-container").find("img").each(function(index, el) {
             var imgValue = Number(this.dataset.img);
-            if (imgValue <= 0) {
-                imgValue = 4;
-                this.dataset.img = 4;
-            } else {
-                imgValue -= 1;
-                this.dataset.img -= 1;
+            if (increment) {
+                if (imgValue <= 0) {
+                    imgValue = 4;
+                    this.dataset.img = 4;
+                } else {
+                    imgValue -= 1;
+                    this.dataset.img -= 1;
+                }
             }
             // if img is going into slot-2 (ie:main display)
             if (+(this.dataset.img) === 2) {
@@ -74,11 +76,18 @@ $(window).load(function() {
                     });
             }
         });
-
+                // dotsssssssssssssssssssss
+        $(".active-dot").removeClass('active-dot');
+        mainDot ++;
+        if(mainDot >4){mainDot = 0;}
+        $(`[data-dot='${mainDot}']`).addClass('active-dot');
     });
+
+
     ////////////////////////////////////////// right arrow
 
-    $(".right-arrow").on('click', function(event) {
+    var increment = true;
+    $(".left-arrow").on('click', function(event) {
 
         var mainWidth = $(".curr-img-container").width();
         var mainHeight = $(".curr-img-container").height();
@@ -101,12 +110,15 @@ $(window).load(function() {
 
         var dataSlideValue = $(".carousel-container").find("img").each(function(index, el) {
             var imgValue = Number(this.dataset.img);
-            if (imgValue >= 4) {
-                imgValue = 0;
-                this.dataset.img = 0;
-            } else {
-                imgValue += 1;
-                this.dataset.img = addUnicodeBy1(this.dataset.img);
+
+            if (increment) {
+                if (imgValue >= 4) {
+                    imgValue = 0;
+                    this.dataset.img = 0;
+                } else {
+                    imgValue += 1;
+                    this.dataset.img = addUnicodeBy1(this.dataset.img);
+                }
             }
             // if img is going into slot-2 (ie:main display)
             if (+(this.dataset.img) === 2) {
@@ -154,8 +166,32 @@ $(window).load(function() {
                     });
             }
         });
+        // dotsssssssssssssssssssss
+        $(".active-dot").removeClass('active-dot');
+        mainDot --;
+        if(mainDot <0){mainDot = 4;}
+        $(`[data-dot='${mainDot}']`).addClass('active-dot');
 
     });
 
+
+    ////////////////// test
+
+    $("button").on('click', function(event) {
+        var s1 = $(".slot-1").offset().left;
+        $(".slot-0")
+            .css({
+                position: 'relative'
+            })
+            .animate({
+                left: s1 - 10
+            });
+    });
+
+    window.onresize = function() {
+        increment = false;
+        $(".right-arrow").click();
+        increment = true;
+    };
 
 });
