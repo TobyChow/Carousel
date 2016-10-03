@@ -1,0 +1,41 @@
+<head>
+    <style>
+        #content {
+  -ms-box-orient: horizontal;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
+    
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+}
+
+.box { 
+flex-shrink: 0; 
+border: 3px solid rgba(0,0,0,.2);
+}
+
+.box1 { 
+flex-grow:0; 
+border: 3px solid rgba(0,0,0,.2);
+}
+    </style>
+</head>
+
+<h4>This is a Flex-Grow</h4>
+<h5>A,B,C and F are flex-shrink:1 . D and E are flex-grow:1 .</h5>
+<div id="content">
+  <div class="box" style="background-color:red;">A</div>
+  <div class="box" style="background-color:lightblue;">B</div>
+  <div class="box" style="background-color:yellow;">C</div>
+  <div class="box1" style="background-color:brown;">D</div>
+  <div class="box1" style="background-color:lightgreen;">E</div>
+  <div class="box" style="background-color:brown;">F</div>
+</div>
