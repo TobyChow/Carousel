@@ -1,37 +1,54 @@
-$(document).ready(function() {
+    $(".right").on('click', function(event) {
 
-    $(".test-btn").on('click', function(event) {
-        console.log('click');
-        var slot0 = $(".slot0").position().left;
-        var slot1 = $(".slot1").position().left;
-        console.log(slot0,slot1);
-        console.log(slot0-slot1);
-        $(".img0")
-            .css({
-                'position':'absolute',
-                width:'100px',
-                height:'100px'
-            })
-            .animate({
-                left: slot1 - slot0,
-            },function(){
-                $(this).remove().appendTo(".slot1").css({
-                    position:'static'
-                });
-            });
-        $(".img1")
-            .css({
-                position:'absolute',
-                width:'100px',
-                height:'100px'
-            })
-            .animate({
-                left: slot0-slot1
-            },function(){
-                $(this).remove().appendTo('.slot0').css({
-                    position: 'static'
-                });
-            });
+        function addUnicodeBy1(str) {
+            return String.fromCharCode(str.charCodeAt() + 1);
+        }
 
+        function minusUnicodeBy1(str) {
+            return String.fromCharCode(str.charCodeAt() - 1);
+        }
+
+        var slots = {};
+
+        (function getSlotCoord() {
+            $(".test-container").find("[class*='slot']").each(function(index, el) {
+                slots[index] = { x: $(this).position().left, y: $(this).position().top };
+            });
+        })();
+
+        $(".test-container").find("img").each(function(index, el) {
+
+            var initialSlot = +this.dataset.img;
+            // loops back last img to the first slot
+            if (initialSlot === 4) {
+                this.dataset.img = 0;
+            } else {
+                this.dataset.img = addUnicodeBy1(this.dataset.img);
+            }
+
+            function animate(target, destination) {
+                var difference = slots[1].x - slots[0].x; // assuming evenly spaced slots
+                $(target)
+                    .css({
+                        'position': 'absolute',
+                        width: '100px',
+                        height: '100px'
+                    })
+                    .animate({
+                        left: difference
+                            // only if flex is space evenly distributed
+                    }, function() {
+                        $(target).remove().appendTo(destination).css({
+                            left: '0', // resets positioning after inserting img into new DOM
+                            position: 'static' // must be static
+                        });
+                    });
+            }
+
+            console.log(`img:${$(this).attr('class')}, initial slot: ${initialSlot}, dataset: ${this.dataset.img}`);
+
+            var target = $(this).attr('class');
+            var destination = `.slot${this.dataset.img}`;
+            animate('.' + target, destination);
+        });
     });
-});
