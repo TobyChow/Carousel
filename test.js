@@ -1,15 +1,14 @@
 /* jshint esversion:6 */
 $(document).ready(function() {
 
-
-
-
     $(".right").on('click', function(event) {
+
+        var sideWidth = $('.slot0').width();
+        var sideHeight = $('.slot0').height();
 
         function addUnicodeBy1(str) {
             return String.fromCharCode(str.charCodeAt() + 1);
         }
-
 
         var slots = {};
 
@@ -30,19 +29,36 @@ $(document).ready(function() {
             }
 
             function animate(target, destination) {
-                var difference = slots[1].x - slots[0].x; // assuming evenly spaced slots
+                var differenceX = slots[1].x - slots[0].x; // assuming evenly spaced slots
+                var differenceY;
+                if (destination === '.slot2') {
+                    differenceY = slots[2].y - slots[1].y;
+                } else if (destination === '.slot3') {
+                    differenceX = slots[3].x - slots[2].x;
+                    differenceY = slots[3].y - slots[2].y;
+                }
+
+                var targetWidth = $(target).width();
+                var targetHeight = $(target).height();
+                var destinationWidth = $(destination).width();
+                var destinationHeight = $(destination).height();
                 $(target)
                     .css({
                         'position': 'absolute',
-                        width: '100px',
-                        height: '100px'
+                        width: targetWidth,
+                        height: targetHeight
                     })
                     .animate({
-                        left: difference
-                            // only if flex is space evenly distributed
+                        left: differenceX, // only if flex is space evenly distributed
+                        top: differenceY,
+                        width: destinationWidth,
+                        height: destinationHeight
                     }, function cb() {
                         $(target).remove().appendTo(destination).css({
                             left: '0', // resets positioning after inserting img into new DOM
+                            top: '0',
+                            width: '100%',
+                            height: '100%',
                             position: 'static' // must be static
                         });
                     });
@@ -55,6 +71,9 @@ $(document).ready(function() {
 
 
     $(".left").on('click', function(event) {
+
+        var sideWidth = $('.slot0').width();
+        var sideHeight = $('.slot0').height();
 
         function minusUnicodeBy1(str) {
             return String.fromCharCode(str.charCodeAt() - 1);
@@ -79,19 +98,38 @@ $(document).ready(function() {
             }
 
             function animate(target, destination) {
+                var differenceX = slots[0].x - slots[1].x; // assuming evenly spaced slots
+                var differenceY;
+                if (destination === '.slot2') {
+                    differenceX = slots[2].x - slots[3].x;
+                    differenceY = slots[2].y - slots[3].y;
+                } else if (destination === '.slot1') {
+                    differenceX = slots[1].x - slots[2].x;
+                    differenceY = slots[1].y - slots[2].y;
+                }
+
+                var targetWidth = $(target).width();
+                var targetHeight = $(target).height();
+                var destinationWidth = $(destination).width();
+                var destinationHeight = $(destination).height();
                 var difference = slots[1].x - slots[0].x; // assuming evenly spaced slots
                 $(target)
                     .css({
                         'position': 'absolute',
-                        width: '100px',
-                        height: '100px'
+                        width: targetWidth,
+                        height: targetHeight
                     })
                     .animate({
-                        left: '-'+difference
-                            // only if flex is space evenly distributed
+                        left: differenceX, // only if flex is space evenly distributed
+                        top: differenceY,
+                        width: destinationWidth,
+                        height: destinationHeight
                     }, function cb() {
                         $(target).remove().appendTo(destination).css({
                             left: '0', // resets positioning after inserting img into new DOM
+                            top: '0',
+                            width: '100%',
+                            height: '100%',
                             position: 'static' // must be static
                         });
                     });
