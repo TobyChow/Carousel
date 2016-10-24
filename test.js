@@ -1,7 +1,7 @@
 /* jshint esversion:6 */
 $(document).ready(function() {
 
-    $(".right").on('click', function(event) {
+    $(".left-arrow").on('click', function(event) {
 
         var sideWidth = $('.slot0').width();
         var sideHeight = $('.slot0').height();
@@ -13,12 +13,12 @@ $(document).ready(function() {
         var slots = {};
 
         (function getSlotCoord() {
-            $(".test-container").find("[class*='slot']").each(function(index, el) {
+            $(".carousel-container").find("[class*='slot']").each(function(index, el) {
                 slots[index] = { x: $(this).position().left, y: $(this).position().top };
             });
         })();
 
-        $(".test-container").find("img").each(function(index, el) {
+        $(".carousel-container").find("img").each(function(index, el) {
 
             var initialSlot = +this.dataset.img;
             // loops back last img to the first slot
@@ -28,7 +28,7 @@ $(document).ready(function() {
                 this.dataset.img = addUnicodeBy1(this.dataset.img);
             }
 
-            function animate(target, destination) {
+            function animateSlide(target, destination) {
                 var differenceX = slots[1].x - slots[0].x; // assuming evenly spaced slots
                 var differenceY;
                 if (destination === '.slot2') {
@@ -65,12 +65,24 @@ $(document).ready(function() {
             }
             var target = $(this).attr('class');
             var destination = `.slot${this.dataset.img}`;
-            animate('.' + target, destination);
+            animateSlide('.' + target, destination);
         });
+
+        // Dots function
+        (function animateDotLeft() {
+            // get data-dot with the active-dot
+            var activeDot = $('.active-dot').removeClass('active-dot');
+            var activeDotData = +activeDot[0].dataset.dot;
+            activeDotData--;
+            if (activeDotData < 0) {
+                activeDotData = 4;
+            }
+            $(`[data-dot=${activeDotData}]`).addClass('active-dot');
+        })();
     });
 
 
-    $(".left").on('click', function(event) {
+    $(".right-arrow").on('click', function(event) {
 
         var sideWidth = $('.slot0').width();
         var sideHeight = $('.slot0').height();
@@ -82,12 +94,12 @@ $(document).ready(function() {
         var slots = {};
 
         (function getSlotCoord() {
-            $(".test-container").find("[class*='slot']").each(function(index, el) {
+            $(".carousel-container").find("[class*='slot']").each(function(index, el) {
                 slots[index] = { x: $(this).position().left, y: $(this).position().top };
             });
         })();
 
-        $(".test-container").find("img").each(function(index, el) {
+        $(".carousel-container").find("img").each(function(index, el) {
 
             var initialSlot = +this.dataset.img;
             // loops back last img to the first slot
@@ -97,7 +109,7 @@ $(document).ready(function() {
                 this.dataset.img = minusUnicodeBy1(this.dataset.img);
             }
 
-            function animate(target, destination) {
+            function animateSlide(target, destination) {
                 var differenceX = slots[0].x - slots[1].x; // assuming evenly spaced slots
                 var differenceY;
                 if (destination === '.slot2') {
@@ -136,7 +148,19 @@ $(document).ready(function() {
             }
             var target = $(this).attr('class');
             var destination = `.slot${this.dataset.img}`;
-            animate('.' + target, destination);
+            animateSlide('.' + target, destination);
         });
+
+        // Dots function
+        (function animateDotRight() {
+            // get data-dot with the active-dot
+            var activeDot = $('.active-dot').removeClass('active-dot');
+            var activeDotData = +activeDot[0].dataset.dot;
+            activeDotData++;
+            if (activeDotData >4) {
+                activeDotData = 0;
+            }
+            $(`[data-dot=${activeDotData}]`).addClass('active-dot');
+        })();
     });
 });
