@@ -50,7 +50,7 @@ body {
         .carousel-container .main-display .overlay .content .title, .carousel-container .main-display .overlay .content .caption {
           display: block; }
         .carousel-container .main-display .overlay .content .center {
-          display: flex;
+          display: none;
           justify-content: space-around;
           width: 100%;
           position: absolute;
