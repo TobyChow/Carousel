@@ -1,15 +1,25 @@
 /* jshint esversion:6 */
 $(document).ready(function() {
 
+    // Displays initial title and caption of main display
+    (function displayMainText() {
+        $('.slot2 .display-title').text($('.slot2 .title').text());
+        $('.slot2 .display-caption').text($('.slot2 .caption').text());
+    })();
+
+    // When left arrow of carousel is clicked
     $(".left-arrow").on('click', function(event) {
 
+        // Get dimensions of the side panels
         var sideWidth = $('.slot0').width();
         var sideHeight = $('.slot0').height();
 
+        // Used to manipulate dataset values since it is stored as strings
         function addUnicodeBy1(str) {
             return String.fromCharCode(str.charCodeAt() + 1);
         }
 
+        // Stores dimensions(top and left) of each panels
         var slots = {};
 
         (function getSlotCoord() {
@@ -68,7 +78,8 @@ $(document).ready(function() {
             animateSlide('.' + target, destination);
         });
 
-        // Dots function
+
+        // animate dots and change title / caption display
         (function animateDotLeft() {
             // get data-dot with the active-dot
             var activeDot = $('.active-dot').removeClass('active-dot');
@@ -78,6 +89,12 @@ $(document).ready(function() {
                 activeDotData = 4;
             }
             $(`[data-dot=${activeDotData}]`).addClass('active-dot');
+            // Get title and caption from parent of img's original slot
+            var newTitle = $(`.slot${activeDotData} .title`).text();
+            var newCaption = $(`.slot${activeDotData} .caption`).text();
+            // insert new title / caption into slot 2
+            $('.content .display-title').text(newTitle);
+            $('.content .display-caption').text(newCaption);
         })();
     });
 
@@ -151,16 +168,24 @@ $(document).ready(function() {
             animateSlide('.' + target, destination);
         });
 
-        // Dots function
+        // animate dots and change title / caption display
         (function animateDotRight() {
             // get data-dot with the active-dot
             var activeDot = $('.active-dot').removeClass('active-dot');
             var activeDotData = +activeDot[0].dataset.dot;
             activeDotData++;
-            if (activeDotData >4) {
+            if (activeDotData > 4) {
                 activeDotData = 0;
             }
             $(`[data-dot=${activeDotData}]`).addClass('active-dot');
+            // Get title and caption from parent of img's original slot
+            var newTitle = $(`.slot${activeDotData} .title`).text();
+            var newCaption = $(`.slot${activeDotData} .caption`).text();
+            // insert new title / caption into slot 2
+            $('.content .display-title').text(newTitle);
+            $('.content .display-caption').text(newCaption);
         })();
     });
+
+
 });

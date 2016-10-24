@@ -54,10 +54,7 @@ body {
                 height:100%;
                 border:1px solid red;
                 position:relative;
-                // only show main display title and caption
-                & .title, & .caption{
-                	display:block;
-                }
+
                 // only shows on hover
                 .center{
                 	display:none; // CHANGE TO NONE AFTER DEBUGGING 

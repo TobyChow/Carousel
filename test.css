@@ -47,8 +47,6 @@ body {
         height: 100%;
         border: 1px solid red;
         position: relative; }
-        .carousel-container .main-display .overlay .content .title, .carousel-container .main-display .overlay .content .caption {
-          display: block; }
         .carousel-container .main-display .overlay .content .center {
           display: none;
           justify-content: space-around;
