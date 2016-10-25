@@ -2,8 +2,9 @@ html,
 body {
     overflow-x: hidden;
 }
-$hoverColor:rgba(0,0,0,0.35);
 
+$hoverColor:rgba(0, 0, 0, 0.35);
+$tablet:768px;
 .carousel-container {
     display: flex;
     flex-flow: row nowrap;
@@ -12,6 +13,12 @@ $hoverColor:rgba(0,0,0,0.35);
     height: 100vh;
     border: 1px solid gold;
     [class^='slot'] {
+        &.web {
+            display: none;
+            @media(min-width: $tablet) {
+                display:unset;
+            }
+        }
         position: relative;
         border: 1px solid blue;
         height: 150px;
@@ -60,29 +67,33 @@ $hoverColor:rgba(0,0,0,0.35);
                     margin-bottom: auto;
                     border: 1px solid black;
                 }
+                // Only show hover icons when screen is large enough
                 .center {
-                	&:hover{
-                		background:$hoverColor;
-                		&>.view{
-                			display:flex;
-                		}
-                	}
-                	display:flex;
-                    justify-content: space-around;
-                    align-items:center;
-                    height:100%;
-                    //
-                    border: 1px solid red;
-                    // middle icon size
-                    & .fa {
-                        font-size: 3rem;
-                    }
-                    .view {
-                        display: none;
-                        flex-flow: column nowrap;
-                        border: 1px solid gold;
-                        .description {
-                            border: 1px solid blue;
+                    display: none;
+                    @media(min-width: $tablet) {
+                        &:hover {
+                            background: $hoverColor;
+                            &>.view {
+                                display: flex;
+                            }
+                        }
+                        display:flex;
+                        justify-content: space-around;
+                        align-items:center;
+                        height:100%;
+                        //
+                        border: 1px solid red;
+                        // middle icon size
+                        & .fa {
+                            font-size: 3rem;
+                        }
+                        .view {
+                            display: none;
+                            flex-flow: column nowrap;
+                            border: 1px solid gold;
+                            .description {
+                                border: 1px solid blue;
+                            }
                         }
                     }
                 }
@@ -94,6 +105,9 @@ $hoverColor:rgba(0,0,0,0.35);
                         align-items: center;
                         width: 100%;
                         .left-icons {
+                            @media(min-width: $tablet) {
+                                visibility: hidden;
+                            }
                             margin-left: 10px;
                             color: black;
                             font-size: 25pt;
@@ -138,6 +152,20 @@ $hoverColor:rgba(0,0,0,0.35);
                 }
             }
         }
+        img {
+            &.web {
+                @media(min-width: $tablet) {
+                    display: block;
+                }
+                display:none;
+            }
+        }
+        // & {
+        //     @media(max-width: $tablet) {
+        //         background: url('./mobile.png');
+        //         background-position: -500px;
+        //     }
+        // }
     }
     img {
         width: 100%;

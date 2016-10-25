@@ -74,7 +74,7 @@ $(document).ready(function() {
                         });
                     });
             }
-            var target = $(this).attr('class');
+            var target = $(this).attr('class').match(/^img\d/g); // stores img classes only;
             var destination = `.slot${this.dataset.img}`;
             animateSlide('.' + target, destination);
         });
@@ -164,7 +164,8 @@ $(document).ready(function() {
                         });
                     });
             }
-            var target = $(this).attr('class');
+            var target = $(this).attr('class').match(/^img\d/g); // stores img classes only
+            console.log(target);
             var destination = `.slot${this.dataset.img}`;
             animateSlide('.' + target, destination);
         });

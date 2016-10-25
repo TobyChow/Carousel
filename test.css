@@ -15,6 +15,11 @@ body {
     height: 150px;
     flex: 1 1 20%;
     margin: 10px; }
+    .carousel-container [class^='slot'].web {
+      display: none; }
+      @media (min-width: 768px) {
+        .carousel-container [class^='slot'].web {
+          display: unset; } }
     .carousel-container [class^='slot'] .title,
     .carousel-container [class^='slot'] .caption {
       display: none; }
@@ -52,23 +57,26 @@ body {
           margin-bottom: auto;
           border: 1px solid black; }
         .carousel-container .main-display .overlay .content .center {
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-          height: 100%;
-          border: 1px solid red; }
-          .carousel-container .main-display .overlay .content .center:hover {
-            background: rgba(0, 0, 0, 0.35); }
-            .carousel-container .main-display .overlay .content .center:hover > .view {
-              display: flex; }
-          .carousel-container .main-display .overlay .content .center .fa {
-            font-size: 3rem; }
-          .carousel-container .main-display .overlay .content .center .view {
-            display: none;
-            flex-flow: column nowrap;
-            border: 1px solid gold; }
-            .carousel-container .main-display .overlay .content .center .view .description {
-              border: 1px solid blue; }
+          display: none; }
+          @media (min-width: 768px) {
+            .carousel-container .main-display .overlay .content .center {
+              display: flex;
+              justify-content: space-around;
+              align-items: center;
+              height: 100%;
+              border: 1px solid red; }
+              .carousel-container .main-display .overlay .content .center:hover {
+                background: rgba(0, 0, 0, 0.35); }
+                .carousel-container .main-display .overlay .content .center:hover > .view {
+                  display: flex; }
+              .carousel-container .main-display .overlay .content .center .fa {
+                font-size: 3rem; }
+              .carousel-container .main-display .overlay .content .center .view {
+                display: none;
+                flex-flow: column nowrap;
+                border: 1px solid gold; }
+                .carousel-container .main-display .overlay .content .center .view .description {
+                  border: 1px solid blue; } }
         .carousel-container .main-display .overlay .content .footer {
           margin-top: auto; }
           .carousel-container .main-display .overlay .content .footer .nav-bar {
@@ -80,6 +88,9 @@ body {
               margin-left: 10px;
               color: black;
               font-size: 25pt; }
+              @media (min-width: 768px) {
+                .carousel-container .main-display .overlay .content .footer .nav-bar .left-icons {
+                  visibility: hidden; } }
             .carousel-container .main-display .overlay .content .footer .nav-bar .nav-dots {
               display: flex; }
               .carousel-container .main-display .overlay .content .footer .nav-bar .nav-dots .dot {
@@ -103,6 +114,11 @@ body {
                 color: blue; }
               .carousel-container .main-display .overlay .content .footer .nav-bar .right-icons:hover {
                 cursor: pointer; }
+    .carousel-container .main-display img.web {
+      display: none; }
+      @media (min-width: 768px) {
+        .carousel-container .main-display img.web {
+          display: block; } }
   .carousel-container img {
     width: 100%;
     height: 100%; }
