@@ -1,6 +1,8 @@
 /* jshint esversion:6 */
 $(document).ready(function() {
 
+    var speed = 300; // speed of animation
+
     // Displays initial title and caption of main display
     (function displayMainText() {
         $('.slot2 .display-title').text($('.slot2 .title').text());
@@ -9,7 +11,6 @@ $(document).ready(function() {
 
     // When left arrow of carousel is clicked
     $(".left-arrow").on('click', function(event) {
-
         // Get dimensions of the side panels
         var sideWidth = $('.slot0').width();
         var sideHeight = $('.slot0').height();
@@ -63,7 +64,7 @@ $(document).ready(function() {
                         top: differenceY,
                         width: destinationWidth,
                         height: destinationHeight
-                    }, function cb() {
+                    }, speed, function cb() {
                         $(target).remove().appendTo(destination).css({
                             left: '0', // resets positioning after inserting img into new DOM
                             top: '0',
@@ -153,7 +154,7 @@ $(document).ready(function() {
                         top: differenceY,
                         width: destinationWidth,
                         height: destinationHeight
-                    }, function cb() {
+                    }, speed, function cb() {
                         $(target).remove().appendTo(destination).css({
                             left: '0', // resets positioning after inserting img into new DOM
                             top: '0',
@@ -187,5 +188,73 @@ $(document).ready(function() {
         })();
     });
 
+    // dots on click
+    $(".dot").on('click', function(event) {
+        var leftCount = 0;
+        var rightCount = 0;
+        var clickedDot = +this.dataset.dot;
+        var start = $('.active-dot')[0].dataset.dot;
+        var count = +start;
+        function distanceCheck(direction) {
+            console.log(count);
+            while (count !== clickedDot) {
+
+                if (direction === 'left') {
+                    leftCount++;
+                    count--;
+                    if (count < 0) {
+                        count = 4;
+                    }
+                }
+                if (direction === 'right') {
+                    rightCount++;
+                    count++;
+                    if (count > 4) {
+                        count = 0;
+                    }
+                }
+            }
+            count = start; // resets start to do left check
+        }
+        distanceCheck('right');
+        distanceCheck('left');
+        // Go left if it is the shortest route, otherwise go right
+        if (leftCount < rightCount) {
+            var c = 0;
+            while (c < leftCount) {
+                // Fix with arrows clicking too quickly, resulting in only 1 click no matter distance
+                setTimeout(function() {
+                    speed=100;
+                    $(".left-arrow").click();
+                    speed=300;
+                },(c*(300)));
+                c++;
+            }
+        } else {
+            var x = 0;
+            while (x < rightCount) {
+                // same fix as left arrow
+                setTimeout(function() {
+                    speed=100;
+                    $(".right-arrow").click();
+                    speed=300;
+                },(x*(300)));
+                x++;
+            }
+        }
+
+    });
+    $('.left').on('click', function(event) {
+
+        setTimeout(function() {
+            $('.left-arrow').click();
+        }, 400);
+        setTimeout(function() {
+            $('.left-arrow').click();
+        }, 800);
+
+
+        /* Act on the event */
+    });
 
 });

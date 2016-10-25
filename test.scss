@@ -2,6 +2,7 @@ html,
 body {
     overflow-x: hidden;
 }
+$hoverColor:rgba(0,0,0,0.35);
 
 .carousel-container {
     display: flex;
@@ -17,8 +18,9 @@ body {
         flex: 1 1 20%;
         margin: 10px;
         // hide title and caption from all slides
-        & .title, & .caption{
-        	display:none;
+        & .title,
+        & .caption {
+            display: none;
         }
     }
     .main-display {
@@ -33,106 +35,107 @@ body {
             position: absolute;
             width: 100%;
             height: 100%;
-            .left-bar{
-            	display:flex;
-            	flex-flow:column nowrap;
-            	justify-content: center;
-            	flex:1 1 10%;
-            	height:100%;
-            	.left-arrow{
-            		font-size:20pt;
-            		&:hover{
-            			cursor: pointer;
-            		}
-            	}
+            .left-bar {
+                display: flex;
+                flex-flow: column nowrap;
+                justify-content: center;
+                flex: 1 1 10%;
+                height: 100%;
+                .left-arrow {
+                    font-size: 20pt;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
             }
             .content {
                 display: flex;
                 flex-flow: column nowrap;
-                justify-content: space-between;
-                width:100%;
-                height:100%;
-                border:1px solid red;
-                position:relative;
-
-                // only shows on hover
-                .center{
-                	display:none; // CHANGE TO NONE AFTER DEBUGGING 
-                	justify-content: space-around;
-                	width: 100%;
-                	//vertical centering
-                	position:absolute;
-                	top:50%;
-                	left:50%;
-                	transform:translate(-50%,-50%);
-                	//
-                	border:1px solid red;
-                	// middle icon size
-                	& .fa{
-                		font-size:3rem;
-                	}
-                	.view{
-                		display:flex;
-                		flex-flow:column nowrap;
-                		border:1px solid gold;
-                		.description{
-                			border:1px solid blue;
+                justify-content: center;
+                width: 100%;
+                height: 100%;
+                border: 1px solid red;
+                position: relative;
+                .display-title {
+                    margin-bottom: auto;
+                    border: 1px solid black;
+                }
+                .center {
+                	&:hover{
+                		background:$hoverColor;
+                		&>.view{
+                			display:flex;
                 		}
                 	}
-                }
-                .nav-bar {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    width: 100%;
-                    .left-icons {
-                        margin-left: 10px;
-                        color: black;
-                        font-size: 25pt;
+                	display:flex;
+                    justify-content: space-around;
+                    align-items:center;
+                    height:100%;
+                    //
+                    border: 1px solid red;
+                    // middle icon size
+                    & .fa {
+                        font-size: 3rem;
                     }
-                    .nav-dots {
+                    .view {
+                        display: none;
+                        flex-flow: column nowrap;
+                        border: 1px solid gold;
+                        .description {
+                            border: 1px solid blue;
+                        }
+                    }
+                }
+                .footer {
+                    margin-top: auto;
+                    .nav-bar {
                         display: flex;
-                        .dot {
-                            width: 12px;
-                            height: 12px;
-                            border-radius: 50%;
-                            margin: 0 10px;
-                            background: black;
+                        justify-content: space-between;
+                        align-items: center;
+                        width: 100%;
+                        .left-icons {
+                            margin-left: 10px;
+                            color: black;
+                            font-size: 25pt;
+                        }
+                        .nav-dots {
+                            display: flex;
+                            .dot {
+                                width: 12px;
+                                height: 12px;
+                                border-radius: 50%;
+                                margin: 0 10px;
+                                background: black;
+                                &:hover {
+                                    cursor: pointer;
+                                }
+                            }
+                            .active-dot {
+                                width: 12px;
+                                height: 12px;
+                                border-radius: 50%;
+                                margin: 0 10px;
+                                background: white;
+                            }
+                        }
+                        .right-icons {
+                            margin-right: 10px;
+                            font-size: 25pt;
+                            &.active {
+                                color: blue;
+                            }
                             &:hover {
                                 cursor: pointer;
                             }
                         }
-                        .active-dot {
-                            width: 12px;
-                            height: 12px;
-                            border-radius: 50%;
-                            margin: 0 10px;
-                            background: white;
-                        }
                     }
-                    .right-icons {
-                        margin-right: 10px;
-                        font-size: 25pt;
-                        &.active {
-                            color: blue;
-                        }
-                        &:hover {
-                            cursor: pointer;
-                        }
-                    }
-                }
-                &:hover{
-                	background:rgba(0,0,0,0.35);
-                	&>.center{
-                		display:flex;
-                	}
                 }
             }
-            .right-bar{
-            	@extend .left-bar;
-            	.right-arrow{
-            		@extend .left-arrow;
-            	}
+            .right-bar {
+                @extend .left-bar;
+                .right-arrow {
+                    @extend .left-arrow;
+                }
             }
         }
     }
