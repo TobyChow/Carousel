@@ -4,6 +4,7 @@ body {
 }
 
 $tablet:768px;
+$hoverColor:rgba(0,0,0,0.35);
 .carousel-container {
     @media(min-width: $tablet) {
         flex-flow: row nowrap;
@@ -77,26 +78,31 @@ $tablet:768px;
                 }
                 // only shows on hover
                 .center {
-                    display: none; // CHANGE TO NONE AFTER DEBUGGING 
-                    justify-content: space-around;
-                    width: 100%;
-                    //vertical centering
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    //
-                    border: 1px solid red;
-                    // middle icon size
-                    & .fa {
-                        font-size: 3rem;
-                    }
-                    .view {
-                        display: flex;
-                        flex-flow: column nowrap;
-                        border: 1px solid gold;
-                        .description {
-                            border: 1px solid blue;
+                    display: none;
+                    @media(min-width: $tablet) {
+                        &:hover {
+                            background: $hoverColor;
+                            &>.view {
+                                display: flex;
+                            }
+                        }
+                        display:flex;
+                        justify-content: space-around;
+                        align-items:center;
+                        height:100%;
+                        //
+                        border: 1px solid red;
+                        // middle icon size
+                        & .fa {
+                            font-size: 3rem;
+                        }
+                        .view {
+                            display: none;
+                            flex-flow: column nowrap;
+                            border: 1px solid gold;
+                            .description {
+                                border: 1px solid blue;
+                            }
                         }
                     }
                 }
@@ -141,12 +147,10 @@ $tablet:768px;
                         }
                     }
                 }
-                &:hover {
-                    background: rgba(0, 0, 0, 0.35);
-                    &>.center {
+                &:hover.center {
                         display: flex;
                     }
-                }
+                
             }
             .right-bar {
                 @extend .left-bar;

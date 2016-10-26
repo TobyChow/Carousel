@@ -64,22 +64,26 @@ body {
         .carousel-container .main-display .overlay .content .caption {
           display: block; }
         .carousel-container .main-display .overlay .content .center {
-          display: none;
-          justify-content: space-around;
-          width: 100%;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          border: 1px solid red; }
-          .carousel-container .main-display .overlay .content .center .fa {
-            font-size: 3rem; }
-          .carousel-container .main-display .overlay .content .center .view {
-            display: flex;
-            flex-flow: column nowrap;
-            border: 1px solid gold; }
-            .carousel-container .main-display .overlay .content .center .view .description {
-              border: 1px solid blue; }
+          display: none; }
+          @media (min-width: 768px) {
+            .carousel-container .main-display .overlay .content .center {
+              display: flex;
+              justify-content: space-around;
+              align-items: center;
+              height: 100%;
+              border: 1px solid red; }
+              .carousel-container .main-display .overlay .content .center:hover {
+                background: rgba(0, 0, 0, 0.35); }
+                .carousel-container .main-display .overlay .content .center:hover > .view {
+                  display: flex; }
+              .carousel-container .main-display .overlay .content .center .fa {
+                font-size: 3rem; }
+              .carousel-container .main-display .overlay .content .center .view {
+                display: none;
+                flex-flow: column nowrap;
+                border: 1px solid gold; }
+                .carousel-container .main-display .overlay .content .center .view .description {
+                  border: 1px solid blue; } }
         .carousel-container .main-display .overlay .content .nav-bar {
           display: flex;
           justify-content: space-between;
@@ -112,7 +116,5 @@ body {
               color: blue; }
             .carousel-container .main-display .overlay .content .nav-bar .right-icons:hover {
               cursor: pointer; }
-        .carousel-container .main-display .overlay .content:hover {
-          background: rgba(0, 0, 0, 0.35); }
-          .carousel-container .main-display .overlay .content:hover > .center {
-            display: flex; }
+        .carousel-container .main-display .overlay .content:hover.center {
+          display: flex; }
