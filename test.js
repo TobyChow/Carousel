@@ -94,8 +94,8 @@ $(document).ready(function() {
             var newTitle = $(`.slot${activeDotData} .title`).text();
             var newCaption = $(`.slot${activeDotData} .caption`).text();
             // insert new title / caption into slot 2
-            $('.content .display-title').text(newTitle);
-            $('.content .display-caption').text(newCaption);
+            $('.main-content .display-title').text(newTitle);
+            $('.main-content .display-caption').text(newCaption);
         })();
     });
 
@@ -184,8 +184,8 @@ $(document).ready(function() {
             var newTitle = $(`.slot${activeDotData} .title`).text();
             var newCaption = $(`.slot${activeDotData} .caption`).text();
             // insert new title / caption into slot 2
-            $('.content .display-title').text(newTitle);
-            $('.content .display-caption').text(newCaption);
+            $('.main-content .display-title').text(newTitle);
+            $('.main-content .display-caption').text(newCaption);
         })();
     });
 
