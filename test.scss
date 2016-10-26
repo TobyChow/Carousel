@@ -3,23 +3,39 @@ body {
     overflow-x: hidden;
 }
 
+$tablet:768px;
 .carousel-container {
+    @media(min-width: $tablet) {
+        flex-flow: row nowrap;
+    }
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: space-around;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    overflow:hidden;
     border: 1px solid gold;
     [class^='slot'] {
+        @media(min-width: $tablet) {
+            flex: 1 1 20%;
+        }
+        display:flex;
         position: relative;
         border: 1px solid blue;
         height: 150px;
-        flex: 1 1 20%;
+        flex: 1 1 100%;
         margin: 10px;
-        // hide title and caption from all slides
-        & .title, & .caption{
-            display:none;
+        @media(min-width:$tablet) {
+            // hide title and caption from all slides
+            & .title,
+            & .caption {
+                display: none;
+            }
         }
+    }
+    img {
+        width: 100%;
+        height: 100%;
     }
     .main-display {
         height: 50vh;
@@ -33,15 +49,15 @@ body {
             position: absolute;
             width: 100%;
             height: 100%;
-            .left-bar{
-                display:flex;
-                flex-flow:column nowrap;
+            .left-bar {
+                display: flex;
+                flex-flow: column nowrap;
                 justify-content: center;
-                flex:1 1 10%;
-                height:100%;
-                .left-arrow{
-                    font-size:20pt;
-                    &:hover{
+                flex: 1 1 10%;
+                height: 100%;
+                .left-arrow {
+                    font-size: 20pt;
+                    &:hover {
                         cursor: pointer;
                     }
                 }
@@ -50,36 +66,37 @@ body {
                 display: flex;
                 flex-flow: column nowrap;
                 justify-content: space-between;
-                width:100%;
-                height:100%;
-                border:1px solid red;
-                position:relative;
+                width: 100%;
+                height: 100%;
+                border: 1px solid red;
+                position: relative;
                 // only show main display title and caption
-                & .title, & .caption{
-                    display:block;
+                & .title,
+                & .caption {
+                    display: block;
                 }
                 // only shows on hover
-                .center{
-                    display:none; // CHANGE TO NONE AFTER DEBUGGING 
+                .center {
+                    display: none; // CHANGE TO NONE AFTER DEBUGGING 
                     justify-content: space-around;
                     width: 100%;
                     //vertical centering
-                    position:absolute;
-                    top:50%;
-                    left:50%;
-                    transform:translate(-50%,-50%);
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
                     //
-                    border:1px solid red;
+                    border: 1px solid red;
                     // middle icon size
-                    & .fa{
-                        font-size:3rem;
+                    & .fa {
+                        font-size: 3rem;
                     }
-                    .view{
-                        display:flex;
-                        flex-flow:column nowrap;
-                        border:1px solid gold;
-                        .description{
-                            border:1px solid blue;
+                    .view {
+                        display: flex;
+                        flex-flow: column nowrap;
+                        border: 1px solid gold;
+                        .description {
+                            border: 1px solid blue;
                         }
                     }
                 }
@@ -124,23 +141,20 @@ body {
                         }
                     }
                 }
-                &:hover{
-                    background:rgba(0,0,0,0.35);
-                    &>.center{
-                        display:flex;
+                &:hover {
+                    background: rgba(0, 0, 0, 0.35);
+                    &>.center {
+                        display: flex;
                     }
                 }
             }
-            .right-bar{
+            .right-bar {
                 @extend .left-bar;
-                .right-arrow{
+                .right-arrow {
                     @extend .left-arrow;
                 }
             }
         }
     }
-    img {
-        width: 100%;
-        height: 100%;
-    }
 }
+

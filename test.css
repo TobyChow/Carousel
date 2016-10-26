@@ -4,19 +4,32 @@ body {
 
 .carousel-container {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: space-around;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
   border: 1px solid gold; }
+  @media (min-width: 768px) {
+    .carousel-container {
+      flex-flow: row nowrap; } }
   .carousel-container [class^='slot'] {
+    display: flex;
     position: relative;
     border: 1px solid blue;
     height: 150px;
-    flex: 1 1 20%;
+    flex: 1 1 100%;
     margin: 10px; }
-    .carousel-container [class^='slot'] .title, .carousel-container [class^='slot'] .caption {
-      display: none; }
+    @media (min-width: 768px) {
+      .carousel-container [class^='slot'] {
+        flex: 1 1 20%; } }
+    @media (min-width: 768px) {
+      .carousel-container [class^='slot'] .title,
+      .carousel-container [class^='slot'] .caption {
+        display: none; } }
+  .carousel-container img {
+    width: 100%;
+    height: 100%; }
   .carousel-container .main-display {
     height: 50vh;
     flex: 1 1 70%; }
@@ -47,7 +60,8 @@ body {
         height: 100%;
         border: 1px solid red;
         position: relative; }
-        .carousel-container .main-display .overlay .content .title, .carousel-container .main-display .overlay .content .caption {
+        .carousel-container .main-display .overlay .content .title,
+        .carousel-container .main-display .overlay .content .caption {
           display: block; }
         .carousel-container .main-display .overlay .content .center {
           display: none;
@@ -102,6 +116,3 @@ body {
           background: rgba(0, 0, 0, 0.35); }
           .carousel-container .main-display .overlay .content:hover > .center {
             display: flex; }
-  .carousel-container img {
-    width: 100%;
-    height: 100%; }
