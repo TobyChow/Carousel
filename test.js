@@ -2,8 +2,9 @@
 $(document).ready(function() {
 
     var speed = 300; // speed of animation
+    var tablet = 768; // tablet px size
 
-    // Displays initial title and caption of main display
+    // Displays initial title and caption of main display from slot 2
     (function displayMainText() {
         $('.slot2 .display-title').text($('.slot2 .title').text());
         $('.slot2 .display-caption').text($('.slot2 .caption').text());
@@ -65,6 +66,8 @@ $(document).ready(function() {
                         width: destinationWidth,
                         height: destinationHeight
                     }, speed, function cb() {
+                        var slotChildren = $(target).parent().find('*');
+                        console.log(slotChildren);
                         $(target).remove().appendTo(destination).css({
                             left: '0', // resets positioning after inserting img into new DOM
                             top: '0',

@@ -2,6 +2,12 @@ html,
 body {
   overflow-x: hidden; }
 
+.to-move {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%; }
+
 .carousel-container {
   display: flex;
   flex-flow: row wrap;
@@ -18,12 +24,13 @@ body {
     justify-content: space-between;
     position: relative;
     border: 1px solid blue;
-    height: 150px;
+    height: 250px;
     flex: 1 1 100%;
     margin: 10px; }
     @media (min-width: 768px) {
       .carousel-container [class^='slot'] {
-        flex: 1 1 20%; } }
+        flex: 1 1 20%;
+        height: 150px; } }
     .carousel-container [class^='slot'] .title,
     .carousel-container [class^='slot'] .caption {
       border: 1px solid red; }

@@ -2,6 +2,15 @@ html,
 body {
     overflow-x: hidden;
 }
+// TESTTTTTTTTTT
+.to-move{
+    display:flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+//////
+
 
 $tablet:768px;
 $hoverColor:rgba(0, 0, 0, 0.35);
@@ -19,12 +28,13 @@ $hoverColor:rgba(0, 0, 0, 0.35);
     [class^='slot'] {
         @media(min-width: $tablet) {
             flex: 1 1 20%;
+            height: 150px;
         }
         display:flex;
         justify-content: space-between; 
         position: relative;
         border: 1px solid blue;
-        height: 150px;
+        height: 250px;
         flex: 1 1 100%;
         margin: 10px;
         & .title,
