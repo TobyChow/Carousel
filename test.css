@@ -2,11 +2,13 @@ html,
 body {
   overflow-x: hidden; }
 
-.to-move {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 100%; }
+@media (min-width: 768px) {
+  .to-move {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    height: 100%; } }
 
 .carousel-container {
   display: flex;

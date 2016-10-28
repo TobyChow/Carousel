@@ -30,8 +30,7 @@ $(document).ready(function() {
             });
         })();
 
-        $(".carousel-container").find("img").each(function(index, el) {
-
+        $(".carousel-container").find(".to-move").each(function(index, el) {
             var initialSlot = +this.dataset.img;
             // loops back last img to the first slot
             if (initialSlot === 4) {
@@ -66,8 +65,6 @@ $(document).ready(function() {
                         width: destinationWidth,
                         height: destinationHeight
                     }, speed, function cb() {
-                        var slotChildren = $(target).parent().find('*');
-                        console.log(slotChildren);
                         $(target).remove().appendTo(destination).css({
                             left: '0', // resets positioning after inserting img into new DOM
                             top: '0',
@@ -77,9 +74,10 @@ $(document).ready(function() {
                         });
                     });
             }
-            var target = $(this).attr('class').match(/^img\d/g); // stores img classes only;
+             var target = el; // stores img classes only;
             var destination = `.slot${this.dataset.img}`;
-            animateSlide('.' + target, destination);
+            animateSlide( target, destination);
+            console.log( $(`.slot2 .title`).text());
         });
 
 
@@ -94,8 +92,8 @@ $(document).ready(function() {
             }
             $(`[data-dot=${activeDotData}]`).addClass('active-dot');
             // Get title and caption from parent of img's original slot
-            var newTitle = $(`.slot${activeDotData} .title`).text();
-            var newCaption = $(`.slot${activeDotData} .caption`).text();
+            var newTitle = $(`.slot1 .title`).text(); // slot1 to get text that would be GOING to slot2
+            var newCaption = $(`.slot1 .caption`).text();
             // insert new title / caption into slot 2
             $('.main-content .display-title').text(newTitle);
             $('.main-content .display-caption').text(newCaption);
@@ -120,7 +118,7 @@ $(document).ready(function() {
             });
         })();
 
-        $(".carousel-container").find("img").each(function(index, el) {
+        $(".carousel-container").find(".to-move").each(function(index, el) {
 
             var initialSlot = +this.dataset.img;
             // loops back last img to the first slot
@@ -167,10 +165,10 @@ $(document).ready(function() {
                         });
                     });
             }
-            var target = $(this).attr('class').match(/^img\d/g); // stores img classes only
+            var target = el; // stores img classes only
             console.log(target);
             var destination = `.slot${this.dataset.img}`;
-            animateSlide('.' + target, destination);
+            animateSlide(target, destination);
         });
 
         // animate dots and change title / caption display
@@ -184,8 +182,8 @@ $(document).ready(function() {
             }
             $(`[data-dot=${activeDotData}]`).addClass('active-dot');
             // Get title and caption from parent of img's original slot
-            var newTitle = $(`.slot${activeDotData} .title`).text();
-            var newCaption = $(`.slot${activeDotData} .caption`).text();
+            var newTitle = $(`.slot3 .title`).text();
+            var newCaption = $(`.slot3 .caption`).text();
             // insert new title / caption into slot 2
             $('.main-content .display-title').text(newTitle);
             $('.main-content .display-caption').text(newCaption);
