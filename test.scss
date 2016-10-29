@@ -4,32 +4,17 @@ body {
 }
 
 // TESTTTTTTTTTT
-
-
 //////
 $tablet:768px;
-$hoverColor:rgba(0,
-0,
-0,
-0.35);
-
-.to-move {
-    @media(min-width: $tablet) {
-        display: flex;
-        justify-content: space-between;
-        position: relative;
-        width: 100%;
-        height: 100%;
-    }
-}
+$hoverColor:rgba(0, 0, 0, 0.35);
 .carousel-container {
     @media(min-width: $tablet) {
         flex-flow: row nowrap;
+        align-items: center;
     }
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column wrap;
     justify-content: space-around;
-    align-items: center;
     min-height: 100vh;
     overflow:hidden;
     border: 1px solid gold;
@@ -42,18 +27,31 @@ $hoverColor:rgba(0,
         justify-content: space-between;
         position: relative;
         border: 1px solid blue;
-        height: 250px;
         flex: 1 1 100%;
         margin: 10px;
-        & .title,
-        & .caption {
-            border: 1px solid red;
+        // Contains contents div with title,caption,etc. and the corresponding img
+        .to-move {
+            // Mobile layout to have content on top and img at bottom
+            display: flex;
+            flex-flow: column;
+            justify-content: space-between;
             @media(min-width: $tablet) {
-                display: none;
+                display: block; // fix content box taking up space
+            }
+            width: 100%;
+            height: 100%;
+            position: relative;
+            .content {
+                @media(min-width: $tablet) {
+                    display: none;
+                }
+                width: 100%;
+                border: 1px solid green;
             }
         }
     }
     img {
+
         width: 150px;
         height: 150px;
         @media(min-width: $tablet) {
@@ -100,10 +98,8 @@ $hoverColor:rgba(0,
                 border: 1px solid red;
                 position: relative;
                 // only show main display title and caption
-                & .title,
-                & .caption {
-                    display: block;
-                }
+                & .display-title,
+                & .display-caption {}
                 // only shows on hover
                 .center {
                     display: none;
@@ -140,6 +136,9 @@ $hoverColor:rgba(0,
                     align-items: center;
                     width: 100%;
                     .left-icons {
+                        @media(min-width: $tablet) {
+                            visibility: hidden;
+                        }
                         margin-left: 10px;
                         color: black;
                         font-size: 25pt;

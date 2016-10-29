@@ -2,44 +2,44 @@ html,
 body {
   overflow-x: hidden; }
 
-@media (min-width: 768px) {
-  .to-move {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    width: 100%;
-    height: 100%; } }
-
 .carousel-container {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   justify-content: space-around;
-  align-items: center;
   min-height: 100vh;
   overflow: hidden;
   border: 1px solid gold; }
   @media (min-width: 768px) {
     .carousel-container {
-      flex-flow: row nowrap; } }
+      flex-flow: row nowrap;
+      align-items: center; } }
   .carousel-container [class^='slot'] {
     display: flex;
     justify-content: space-between;
     position: relative;
     border: 1px solid blue;
-    height: 250px;
     flex: 1 1 100%;
     margin: 10px; }
     @media (min-width: 768px) {
       .carousel-container [class^='slot'] {
         flex: 1 1 20%;
         height: 150px; } }
-    .carousel-container [class^='slot'] .title,
-    .carousel-container [class^='slot'] .caption {
-      border: 1px solid red; }
+    .carousel-container [class^='slot'] .to-move {
+      display: flex;
+      flex-flow: column;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+      position: relative; }
       @media (min-width: 768px) {
-        .carousel-container [class^='slot'] .title,
-        .carousel-container [class^='slot'] .caption {
-          display: none; } }
+        .carousel-container [class^='slot'] .to-move {
+          display: block; } }
+      .carousel-container [class^='slot'] .to-move .content {
+        width: 100%;
+        border: 1px solid green; }
+        @media (min-width: 768px) {
+          .carousel-container [class^='slot'] .to-move .content {
+            display: none; } }
   .carousel-container img {
     width: 150px;
     height: 150px; }
@@ -81,9 +81,6 @@ body {
       height: 100%;
       border: 1px solid red;
       position: relative; }
-      .carousel-container .main-display .overlay .main-content .title,
-      .carousel-container .main-display .overlay .main-content .caption {
-        display: block; }
       .carousel-container .main-display .overlay .main-content .center {
         display: none; }
         @media (min-width: 768px) {
@@ -114,6 +111,9 @@ body {
           margin-left: 10px;
           color: black;
           font-size: 25pt; }
+          @media (min-width: 768px) {
+            .carousel-container .main-display .overlay .main-content .nav-bar .left-icons {
+              visibility: hidden; } }
         .carousel-container .main-display .overlay .main-content .nav-bar .nav-dots {
           display: flex; }
           .carousel-container .main-display .overlay .main-content .nav-bar .nav-dots .dot {
