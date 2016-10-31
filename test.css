@@ -6,9 +6,8 @@ body {
   display: flex;
   flex-flow: column wrap;
   justify-content: space-around;
-  min-height: 100vh;
   border: 1px solid gold; }
-  @media (min-width: 768px) {
+  @media (min-width: 900px) {
     .carousel-container {
       flex-flow: row nowrap;
       align-items: center; } }
@@ -18,37 +17,38 @@ body {
     position: relative;
     border: 1px solid blue;
     margin: 10px; }
-    @media (min-width: 768px) {
+    @media (min-width: 900px) {
       .carousel-container [class^='slot'] {
         flex: 1 1 20%;
         height: 150px; } }
     .carousel-container [class^='slot'] .to-move {
       display: flex;
-      flex-flow: column nowrap;
-      justify-content: space-between; }
-      @media (min-width: 768px) {
+      justify-content: space-between;
+      width: 100%; }
+      @media (min-width: 900px) {
         .carousel-container [class^='slot'] .to-move {
-          display: block;
-          width: 100%; } }
+          display: block; } }
       .carousel-container [class^='slot'] .to-move .content {
         border: 1px solid green; }
-        @media (min-width: 768px) {
+        @media (min-width: 900px) {
           .carousel-container [class^='slot'] .to-move .content {
             display: none; } }
+  .carousel-container .slot1 .content, .carousel-container .slot3 .content {
+    order: 1; }
   .carousel-container img {
     width: 150px;
     height: 150px; }
-    @media (min-width: 768px) {
+    @media (min-width: 900px) {
       .carousel-container img {
         width: 100%;
         height: 100%; } }
-  @media (min-width: 768px) {
+  @media (min-width: 900px) {
     .carousel-container .main-display {
       height: 50vh;
       flex: 1 1 70%; } }
   .carousel-container .main-display .overlay {
     display: none; }
-    @media (min-width: 768px) {
+    @media (min-width: 900px) {
       .carousel-container .main-display .overlay {
         display: flex;
         flex-flow: row nowrap;
@@ -78,7 +78,7 @@ body {
       position: relative; }
       .carousel-container .main-display .overlay .main-content .center {
         display: none; }
-        @media (min-width: 768px) {
+        @media (min-width: 900px) {
           .carousel-container .main-display .overlay .main-content .center {
             display: flex;
             justify-content: space-around;
@@ -106,7 +106,7 @@ body {
           margin-left: 10px;
           color: black;
           font-size: 25pt; }
-          @media (min-width: 768px) {
+          @media (min-width: 900px) {
             .carousel-container .main-display .overlay .main-content .nav-bar .left-icons {
               visibility: hidden; } }
         .carousel-container .main-display .overlay .main-content .nav-bar .nav-dots {
@@ -134,3 +134,10 @@ body {
             cursor: pointer; }
       .carousel-container .main-display .overlay .main-content:hover.center {
         display: flex; }
+
+.info-display {
+  display: none;
+  text-align: center; }
+  @media (min-width: 900px) {
+    .info-display {
+      display: none; } }

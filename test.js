@@ -10,6 +10,11 @@ $(document).ready(function() {
         $('.slot2 .display-caption').text($('.slot2 .caption').text());
     })();
 
+    // Shows / Hides more info on info-btn click
+    $('.info-icon').on('click', function(event) {
+        $('.info-display').slideToggle();
+    });
+
     // When left arrow of carousel is clicked
     $(".left-arrow").on('click', function(event) {
         // Get dimensions of the side panels
@@ -255,8 +260,6 @@ $(document).ready(function() {
             $('.left-arrow').click();
         }, 800);
 
-
-        /* Act on the event */
     });
 
 });

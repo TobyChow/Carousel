@@ -3,9 +3,8 @@ body {
     overflow-x: hidden;
 }
 
-
 //////
-$tablet:768px;
+$tablet:900px;
 $hoverColor:rgba(0, 0, 0, 0.35);
 .carousel-container {
     @media(min-width: $tablet) {
@@ -15,7 +14,6 @@ $hoverColor:rgba(0, 0, 0, 0.35);
     display: flex;
     flex-flow: column wrap;
     justify-content: space-around;
-    min-height: 100vh;
     // overflow:hidden;
     border: 1px solid gold;
     [class^='slot'] {
@@ -27,25 +25,26 @@ $hoverColor:rgba(0, 0, 0, 0.35);
         justify-content: space-between;
         position: relative;
         border: 1px solid blue;
-        // flex: 1 1 100%;
         margin: 10px;
         // Contains contents div with title,caption,etc. and the corresponding img
         .to-move {
-            // Mobile layout to have content on top and img at bottom
-            display: flex;
-            flex-flow: column nowrap;
-            justify-content: space-between;
             @media(min-width: $tablet) {
                 display: block; // fix content box taking up space
-                width:100%;
             }
+            display: flex;
+            justify-content: space-between;
+            width:100%;
             .content {
                 @media(min-width: $tablet) {
                     display: none;
                 }
                 border: 1px solid green;
+                // flex:1 1; maybe not be needed, img0 on refresh doesnt not size properly inititally
             }
         }
+    }
+    .slot1 .content, .slot3 .content{
+        order:1;
     }
     img {
         width: 150px;
@@ -179,4 +178,10 @@ $hoverColor:rgba(0, 0, 0, 0.35);
         }
     }
 }
-
+.info-display{
+    display:none;
+    text-align:center;
+    @media(min-width:$tablet){
+        display:none;
+    }
+}
