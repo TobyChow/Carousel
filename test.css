@@ -7,7 +7,6 @@ body {
   flex-flow: column wrap;
   justify-content: space-around;
   min-height: 100vh;
-  overflow: hidden;
   border: 1px solid gold; }
   @media (min-width: 768px) {
     .carousel-container {
@@ -18,7 +17,6 @@ body {
     justify-content: space-between;
     position: relative;
     border: 1px solid blue;
-    flex: 1 1 100%;
     margin: 10px; }
     @media (min-width: 768px) {
       .carousel-container [class^='slot'] {
@@ -26,16 +24,13 @@ body {
         height: 150px; } }
     .carousel-container [class^='slot'] .to-move {
       display: flex;
-      flex-flow: column;
-      justify-content: space-between;
-      width: 100%;
-      height: 100%;
-      position: relative; }
+      flex-flow: column nowrap;
+      justify-content: space-between; }
       @media (min-width: 768px) {
         .carousel-container [class^='slot'] .to-move {
-          display: block; } }
+          display: block;
+          width: 100%; } }
       .carousel-container [class^='slot'] .to-move .content {
-        width: 100%;
         border: 1px solid green; }
         @media (min-width: 768px) {
           .carousel-container [class^='slot'] .to-move .content {

@@ -3,7 +3,7 @@ body {
     overflow-x: hidden;
 }
 
-// TESTTTTTTTTTT
+
 //////
 $tablet:768px;
 $hoverColor:rgba(0, 0, 0, 0.35);
@@ -16,7 +16,7 @@ $hoverColor:rgba(0, 0, 0, 0.35);
     flex-flow: column wrap;
     justify-content: space-around;
     min-height: 100vh;
-    overflow:hidden;
+    // overflow:hidden;
     border: 1px solid gold;
     [class^='slot'] {
         @media(min-width: $tablet) {
@@ -27,31 +27,27 @@ $hoverColor:rgba(0, 0, 0, 0.35);
         justify-content: space-between;
         position: relative;
         border: 1px solid blue;
-        flex: 1 1 100%;
+        // flex: 1 1 100%;
         margin: 10px;
         // Contains contents div with title,caption,etc. and the corresponding img
         .to-move {
             // Mobile layout to have content on top and img at bottom
             display: flex;
-            flex-flow: column;
+            flex-flow: column nowrap;
             justify-content: space-between;
             @media(min-width: $tablet) {
                 display: block; // fix content box taking up space
+                width:100%;
             }
-            width: 100%;
-            height: 100%;
-            position: relative;
             .content {
                 @media(min-width: $tablet) {
                     display: none;
                 }
-                width: 100%;
                 border: 1px solid green;
             }
         }
     }
     img {
-
         width: 150px;
         height: 150px;
         @media(min-width: $tablet) {
@@ -97,10 +93,6 @@ $hoverColor:rgba(0, 0, 0, 0.35);
                 height: 100%;
                 border: 1px solid red;
                 position: relative;
-                // only show main display title and caption
-                & .display-title,
-                & .display-caption {}
-                // only shows on hover
                 .center {
                     display: none;
                     @media(min-width: $tablet) {
