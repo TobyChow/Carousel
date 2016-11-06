@@ -10,13 +10,16 @@ $(document).ready(function() {
         $('.slot2 .display-caption').text($('.slot2 .caption').text());
     })();
 
-    // Shows / Hides more info on info-btn click
+    // Info display fnc for tablet only
     $('.info-icon').on('click', function(event) {
+        var mainInfo = $('.slot2 .info').text();
+        $('.info-display').text(mainInfo);
         $('.info-display').slideToggle();
     });
 
     // When left arrow of carousel is clicked
     $(".left-arrow").on('click', function(event) {
+
         // Get dimensions of the side panels
         var sideWidth = $('.slot0').width();
         var sideHeight = $('.slot0').height();
@@ -79,10 +82,10 @@ $(document).ready(function() {
                         });
                     });
             }
-             var target = el; // stores img classes only;
+            var target = el; // stores img classes only;
             var destination = `.slot${this.dataset.img}`;
-            animateSlide( target, destination);
-            console.log( $(`.slot2 .title`).text());
+            animateSlide(target, destination);
+            console.log($(`.slot2 .title`).text());
         });
 
 
@@ -102,6 +105,10 @@ $(document).ready(function() {
             // insert new title / caption into slot 2
             $('.main-content .display-title').text(newTitle);
             $('.main-content .display-caption').text(newCaption);
+            // Get info of next slide going into main display
+            var newInfo = $('.slot1 .info').text();
+            // Updates main display info
+            $('.info-display').text(newInfo);
         })();
     });
 
@@ -192,6 +199,10 @@ $(document).ready(function() {
             // insert new title / caption into slot 2
             $('.main-content .display-title').text(newTitle);
             $('.main-content .display-caption').text(newCaption);
+            // Get info of next slide going into main display
+            var newInfo = $('.slot3 .info').text();
+            // Updates main display info
+            $('.info-display').text(newInfo);
         })();
     });
 
@@ -202,6 +213,7 @@ $(document).ready(function() {
         var clickedDot = +this.dataset.dot;
         var start = $('.active-dot')[0].dataset.dot;
         var count = +start;
+
         function distanceCheck(direction) {
             console.log(count);
             while (count !== clickedDot) {
@@ -231,10 +243,10 @@ $(document).ready(function() {
             while (c < leftCount) {
                 // Fix with arrows clicking too quickly, resulting in only 1 click no matter distance
                 setTimeout(function() {
-                    speed=100;
+                    speed = 100;
                     $(".left-arrow").click();
-                    speed=300;
-                },(c*(300)));
+                    speed = 300;
+                }, (c * (300)));
                 c++;
             }
         } else {
@@ -242,10 +254,10 @@ $(document).ready(function() {
             while (x < rightCount) {
                 // same fix as left arrow
                 setTimeout(function() {
-                    speed=100;
+                    speed = 100;
                     $(".right-arrow").click();
-                    speed=300;
-                },(x*(300)));
+                    speed = 300;
+                }, (x * (300)));
                 x++;
             }
         }

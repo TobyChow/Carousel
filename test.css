@@ -21,27 +21,39 @@ body {
       .carousel-container [class^='slot'] {
         flex: 1 1 20%;
         height: 150px; } }
+    @media (max-width: 900px) {
+      .carousel-container [class^='slot']:nth-child(even) {
+        background: blue; } }
     .carousel-container [class^='slot'] .to-move {
       display: flex;
+      flex-flow: row wrap;
       justify-content: space-between;
       width: 100%; }
       @media (min-width: 900px) {
         .carousel-container [class^='slot'] .to-move {
           display: block; } }
       .carousel-container [class^='slot'] .to-move .content {
-        border: 1px solid green; }
-        @media (min-width: 900px) {
-          .carousel-container [class^='slot'] .to-move .content {
-            display: none; } }
-  .carousel-container .slot1 .content, .carousel-container .slot3 .content {
-    order: 1; }
-  .carousel-container img {
-    width: 150px;
-    height: 150px; }
-    @media (min-width: 900px) {
-      .carousel-container img {
-        width: 100%;
-        height: 100%; } }
+        flex: 1 1 100%;
+        height: 100%; }
+        .carousel-container [class^='slot'] .to-move .content :not(img) {
+          flex: 1 1 60%;
+          border: 1px solid green; }
+          @media (min-width: 900px) {
+            .carousel-container [class^='slot'] .to-move .content :not(img) {
+              display: none; } }
+        .carousel-container [class^='slot'] .to-move .content .links {
+          display: flex;
+          font-size: 1.2em; }
+          .carousel-container [class^='slot'] .to-move .content .links a {
+            color: black; }
+        .carousel-container [class^='slot'] .to-move .content img {
+          float: right;
+          width: 150px;
+          height: 150px; }
+          @media (min-width: 900px) {
+            .carousel-container [class^='slot'] .to-move .content img {
+              width: 100%;
+              height: 100%; } }
   @media (min-width: 900px) {
     .carousel-container .main-display {
       height: 50vh;
@@ -96,7 +108,9 @@ body {
               flex-flow: column nowrap;
               border: 1px solid gold; }
               .carousel-container .main-display .overlay .main-content .center .view .description {
-                border: 1px solid blue; } }
+                border: 1px solid blue; }
+              .carousel-container .main-display .overlay .main-content .center .view a {
+                color: black; } }
       .carousel-container .main-display .overlay .main-content .nav-bar {
         display: flex;
         justify-content: space-between;
@@ -138,6 +152,6 @@ body {
 .info-display {
   display: none;
   text-align: center; }
-  @media (min-width: 900px) {
+  @media (max-width: 900px) {
     .info-display {
-      display: none; } }
+      display: none !important; } }

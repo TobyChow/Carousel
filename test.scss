@@ -1,11 +1,13 @@
+// Hide horz scrollbar when panning through slides
 html,
 body {
     overflow-x: hidden;
 }
 
-//////
+////// Variables
 $tablet:900px;
 $hoverColor:rgba(0, 0, 0, 0.35);
+/////
 .carousel-container {
     @media(min-width: $tablet) {
         flex-flow: row nowrap;
@@ -14,12 +16,16 @@ $hoverColor:rgba(0, 0, 0, 0.35);
     display: flex;
     flex-flow: column wrap;
     justify-content: space-around;
-    // overflow:hidden;
     border: 1px solid gold;
     [class^='slot'] {
         @media(min-width: $tablet) {
             flex: 1 1 20%;
-            height: 150px;
+            height:150px;
+        }
+        @media(max-width:$tablet) {
+            &:nth-child(even) {
+                background: blue;
+            }
         }
         display:flex;
         justify-content: space-between;
@@ -32,26 +38,39 @@ $hoverColor:rgba(0, 0, 0, 0.35);
                 display: block; // fix content box taking up space
             }
             display: flex;
+            flex-flow:row wrap;
             justify-content: space-between;
             width:100%;
+            // Targets everything in .content except for img
             .content {
-                @media(min-width: $tablet) {
-                    display: none;
+                flex: 1 1 100%;
+                height: 100%; // fix image pos in tablet
+                & :not(img) {
+                    // ** make sure prettify does not remove space between & :not... or img will not be displayed
+                    @media(min-width: $tablet) {
+                        display: none;
+                    }
+                    flex:1 1 60%; // sets allowed space of .content before collapse
+                    border: 1px solid green;
+                    // flex:1 1; maybe not be needed, img0 on refresh doesnt not size properly inititally
                 }
-                border: 1px solid green;
-                // flex:1 1; maybe not be needed, img0 on refresh doesnt not size properly inititally
+                .links{
+                    display: flex;
+                    font-size:1.2em;
+                    a{
+                        color:black; // change default <a> color
+                    }
+                }
+                img {
+                    float: right;
+                    width: 150px;
+                    height: 150px;
+                    @media(min-width: $tablet) {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
             }
-        }
-    }
-    .slot1 .content, .slot3 .content{
-        order:1;
-    }
-    img {
-        width: 150px;
-        height: 150px;
-        @media(min-width: $tablet) {
-            width: 100%;
-            height: 100%;
         }
     }
     .main-display {
@@ -118,6 +137,9 @@ $hoverColor:rgba(0, 0, 0, 0.35);
                             .description {
                                 border: 1px solid blue;
                             }
+                            a {
+                                color: black; // change default anchor color
+                            }
                         }
                     }
                 }
@@ -178,10 +200,12 @@ $hoverColor:rgba(0, 0, 0, 0.35);
         }
     }
 }
-.info-display{
-    display:none;
-    text-align:center;
-    @media(min-width:$tablet){
-        display:none;
+
+.info-display {
+    display: none;
+    text-align: center;
+    @media(max-width: $tablet) {
+        display: none !important; // hides .info-display even if .info is displayed on >=tablet size
     }
 }
+
